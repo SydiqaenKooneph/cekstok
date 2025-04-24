@@ -34,7 +34,6 @@ function renderTable() {
     row.innerHTML = `
       <td>${item.kode_barang}</td>
       <td>${item.nama_barang}</td>
-      <td>${item.lokasi}</td>
       <td class="text-center">
         <button class="lihat-btn" onclick='showPopup(${JSON.stringify(item)})'>
           <i class="bi bi-search"></i> Lihat

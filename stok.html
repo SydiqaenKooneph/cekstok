@@ -81,6 +81,8 @@
   </style>
 </head>
 <body class="py-4">
+    <audio id="audioPlayer" src="informasi.mp3" muted></audio>
+
 
   <div class="container">
     <h2 class="mb-4">📦 Data Stok Barang</h2>
@@ -119,5 +121,27 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
   <script src="stok.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const audio = document.getElementById('audioPlayer');
+  
+    document.addEventListener('DOMContentLoaded', () => {
+      // Play diam-diam saat awal, ini tidak error karena muted
+      audio.play().catch(() => {
+        console.warn('Autoplay gagal, akan dicoba setelah klik user');
+      });
+  
+      // Saat user klik di mana saja di body, unmute dan play ulang
+      document.body.addEventListener('click', () => {
+        if (audio.muted) {
+          audio.muted = false;
+          audio.currentTime = 0;
+          audio.play().catch(err => {
+            console.warn('Audio masih gagal diputar:', err);
+          });
+        }
+      }, { once: true });
+    });
+  </script>
+  
 </body>
 </html>
